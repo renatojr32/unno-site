@@ -1,9 +1,0 @@
-<!doctype html><meta charset="utf-8"><title>relay</title>
-<script>
-(async () => {
-  const f = new URLSearchParams(location.search).get('f');
-  const b = await (await fetch(f)).blob();
-  (window.opener || window.parent).postMessage({relay: f, blob: b}, 'https://appstoreconnect.apple.com');
-  document.title = 'sent';
-})();
-</script>
