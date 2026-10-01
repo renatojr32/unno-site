@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><title>relay</title>
+<script>
+(async () => {
+  const q = new URLSearchParams(location.search);
+  const out = [];
+  for (const f of q.get('f').split(',')) out.push({name: f, blob: await (await fetch(f)).blob()});
+  (window.opener || window.parent).postMessage({relay: true, files: out}, q.get('o'));
+})();
+</script>
